@@ -1,18 +1,42 @@
-/**
- * Checks if a number is a prime number.
- * @param {number} num - The number to check.
- * @returns {boolean} True if prime, false otherwise.
- */
-const isPrime = (num) => {
-    // TODO: 1. Handle edge cases (numbers <= 1) using const rules where applicable
-    
-    // TODO: 2. Handle the number 2 and even numbers
-    
-    // TODO: 3. Use a loop to check for factors up to the square root of num
-    // Hint: Use 'const' for values that stay the same and 'let' for values that change
-    
-    return false; // Change this return statement
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Number Checker</title>
+</head>
+<body>
+  <h1>Prime Number Checker</h1>
 
-// Export the function for the test cases
-module.exports = isPrime;
+  <input type="number" id="number" placeholder="Enter a number">
+  <button onclick="checkPrime()">Check</button>
+
+  <p id="result"></p>
+
+  <script>
+    function isPrime(num) {
+      if (num <= 1) return false;
+      if (num === 2) return true;
+      if (num % 2 === 0) return false;
+
+      for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    function checkPrime() {
+      const num = Number(document.getElementById("number").value);
+      const result = document.getElementById("result");
+
+      if (document.getElementById("number").value.trim() === "") {
+        result.textContent = "Please enter a number.";
+      } else if (isPrime(num)) {
+        result.textContent = num + " is a Prime Number.";
+      } else {
+        result.textContent = num + " is not a Prime Number.";
+      }
+    }
+  </script>
+</body>
+</html>
